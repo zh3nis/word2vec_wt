@@ -2,6 +2,9 @@
 
 Code for the SGNS model with tied weights from the paper [Context Vectors Are Reflections of Word Vectors in Half the Dimensions](https://jair.org/index.php/jair/article/view/11368) (JAIR)
 
+### Requirements
+Code is written in Python 3 and requires TensorFlow 1.1+.
+
 Assuming you have cloned the git repository, navigate into this directory. To download the example text and evaluation data:
 
 ```shell
