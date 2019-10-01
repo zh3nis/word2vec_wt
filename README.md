@@ -23,11 +23,20 @@ g++ -std=c++11 -shared word2vec_ops.cc word2vec_kernels.cc -o word2vec_ops.so -f
 
 On Mac, add `-undefined dynamic_lookup` to the g++ command. The flag `-D_GLIBCXX_USE_CXX11_ABI=0` is included to support newer versions of gcc. However, if you compiled TensorFlow from source using gcc 5 or later, you may need to exclude the flag. Specifically, if you get an error similar to the following: `word2vec_ops.so: undefined symbol: _ZN10tensorflow7strings6StrCatERKNS0_8AlphaNumES3_S3_S3_` then you likely need to exclude the flag.
 
+Prepare folders for checkpoints, vocabulary, and embeddings:
+```shell
+mkdir embeddings
+mkdir saves
+```
+
 Once you've successfully compiled the ops, run the model as follows:
 
 ```shell
 python word2vec_wt.py \
   --train_data=text8 \
   --eval_data=questions-words.txt \
-  --save_path=/tmp/
+  --save_path=saves
+  --is_train=True
 ```
+
+To fetch the trained embeddings run the model with `--is_train=False` and provide the appropriate checkpoint through the `--checkpoint` flag.
